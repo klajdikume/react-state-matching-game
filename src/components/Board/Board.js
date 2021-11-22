@@ -4,9 +4,9 @@ import { Tile } from '../Tile';
 
 const Board = (props) => {
 
-  let tiles = props.tiles.map((tile) => {
-    return  <Tile { ...tile } /> ;
-  })
+  let tiles = props.tiles.map((tile) => (
+      <Tile { ...tile } />
+  ))
 
   const gridConfig = {
     gridTemplateColumns: `repeat(${Math.sqrt(props.numTiles)}, 1fr)`,
