@@ -4,7 +4,7 @@ import './Tile.css'
 
 const Tile = (props) => {
 
-  let selectedColor = props.selected ? props.color : null;
+  let selectedColor = props.selected || props.matched ? { backgroundColor: props.color } : null;
 
   return (
     <div className='Tile' style={{ selectedColor }}>
