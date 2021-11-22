@@ -24,7 +24,7 @@ class App extends Component{
         playing: true,
         previousTileIndex: null,
         toBeCleared: null,
-        tiles: createTiles(numTiles)
+        tiles: createTiles(state.numTiles)
       }
     });
 
