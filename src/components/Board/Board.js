@@ -1,6 +1,6 @@
 import React from 'react'
 import './Board.css';
-import { Tile } from '../Tile';
+import  Tile  from '../Tile';
 
 const Board = (props) => {
 
