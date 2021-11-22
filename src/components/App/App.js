@@ -9,6 +9,7 @@ class App extends Component{
 
   constructor(props) {
     super(props)
+
     this.state = {
       numTiles: 36,
       playing: false,
@@ -19,14 +20,12 @@ class App extends Component{
   }
 
   startGame = (numTiles) => {
-    createTiles(this.handleTileClicked);
-    
     this.setState((state) => {
       return {
         playing: true,
         previousTileIndex: null,
         toBeCleared: null,
-        tiles: createTiles(state.numTiles)
+        tiles: createTiles(state.numTiles, this.handleTileClicked)
       }
     });
 
@@ -41,17 +40,18 @@ class App extends Component{
       let previousTileIndex = state.previousTileIndex;
       
       if(toBeCleared != null){
-        toBeCleared[0].selected = false;
-        toBeCleared[1].selected = false;
+        tiles[toBeCleared[0]].selected = false;
+        tiles[toBeCleared[1]].selected = false;
         toBeCleared = null;
       }
 
       tiles[selectedTileIndex].selected = true;
 
       if(previousTileIndex != null){
-        let previousTile = tiles[selectedTileIndex];
-        let selectedTile = tiles[previousTileIndex];
-        if(previousTile.id != selectedTile.id && previousTile.color === color){
+        let previousTile = tiles[previousTileIndex];
+        let selectedTile = tiles[selectedTileIndex];
+        
+        if(previousTile.id !== selectedTile.id && previousTile.color === color){
           selectedTile.matched = true;
           previousTile.matched = true;
           previousTileIndex = null;
@@ -65,9 +65,9 @@ class App extends Component{
       }
       
       return {
-        toBeCleared: toBeCleared,
-        tiles: tiles,
-        previousTileIndex: previousTileIndex
+        toBeCleared,
+        tiles,
+        previousTileIndex
       }
     })
   }
